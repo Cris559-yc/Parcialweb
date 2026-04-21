@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2026 a las 19:23:52
+-- Tiempo de generación: 21-04-2026 a las 23:25:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -33,16 +33,21 @@ CREATE TABLE `productos` (
   `Descripción` varchar(100) DEFAULT NULL,
   `precioUnitario` decimal(10,2) DEFAULT NULL,
   `Cantidad` int(10) DEFAULT NULL,
-  `Existencia` int(10) DEFAULT NULL
+  `Existencia` int(10) DEFAULT NULL,
+  `Categoria` varchar(50) DEFAULT NULL,
+  `Estado` varchar(20) DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`Id_producto`, `Nombre`, `Descripción`, `precioUnitario`, `Cantidad`, `Existencia`) VALUES
-('P0978', 'Mouse', 'Producto Tecnologico', 5.00, 3, 10),
-('P567', 'Laptop', 'Producto Tecnologico', 1500.00, 1, 50);
+INSERT INTO `productos` (`Id_producto`, `Nombre`, `Descripción`, `precioUnitario`, `Cantidad`, `Existencia`, `Categoria`, `Estado`) VALUES
+('000001', 'Samsung s21', 'Telefono de alta gama', 400.00, 10, 10, NULL, 'Activo'),
+('P0978', 'Mouse', 'Producto Tecnologico', 5.00, 3, 10, NULL, 'Activo'),
+('P0987', 'Carne de vaca', 'Carne de vaca', 15.00, 2, 19, NULL, 'Activo'),
+('P567', 'Laptop', 'Producto Tecnologico', 1500.00, 1, 50, NULL, 'Activo'),
+('P981', 'Xiaomi poco f6', 'Telefono de gama media', 300.00, 2, 10, NULL, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -63,7 +68,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nombre`, `password`, `created_at`) VALUES
 (1, 'cristian123', 'Cris@2024#Secure', '2026-04-08 16:52:05'),
-(2, 'juan890', 'Juan$890!Pass', '2026-04-08 16:52:05');
+
 
 --
 -- Índices para tablas volcadas
