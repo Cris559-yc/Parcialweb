@@ -7,6 +7,32 @@ La diferencia principal es que $_GET recoge variables que viajan en la URL como 
 Tu app va a usarse en una empresa de la zona oriental. ¿Qué riesgos de seguridad identificas en una app web con BD que maneja datos de los usuarios? ¿Cómo los mitigarían?
 Uno de los principales riesgos es la inyección SQL, porque en varias partes del proyecto las consultas se construyen concatenando valores directamente dentro del SQL, por ejemplo en el login, en la edición y en las operaciones de productos. Para mitigarlo, usaríamos sentencias preparadas con parámetros (prepared statements y bind_param), ya que OWASP las recomienda como una defensa principal contra este tipo de ataque. El manejo de contraseñas en texto plano tambien es un riesgo importasnte. En el volcado SQL, la tabla usuario guarda la contraseña en un campo password, y en login.php la comparación se hace de forma directa, sin hash. Eso es peligroso porque, si la base de datos se expone, las contraseñas quedarían comprometidas. La mejora correcta sería almacenar contraseñas con password_hash() y validarlas con password_verify().
 
+8- En el mismo readme realizar un diccionario de datos con las tablas con el siguiente
+formato:
+
+Tabla producto:
+| Columna        | Tipo de dato  |            Límite de caracteres | ¿Es nulo? | Descripción                                                         |
+| -------------- | ------------- | ------------------------------: | --------- | ------------------------------------------------------------------- |
+| Id_producto    | VARCHAR       |                              10 | No        | Identificador único del producto.                                   |
+| Nombre         | VARCHAR       |                             100 | Sí        | Nombre del producto registrado en el sistema.                       |
+| Descripción    | VARCHAR       |                             100 | Sí        | Breve detalle o descripción del producto.                           |
+| precioUnitario | DECIMAL(10,2) | 10 dígitos totales, 2 decimales | Sí        | Precio unitario del producto.                                       |
+| Cantidad       | INT(10)       |                              10 | Sí        | Cantidad seleccionada o registrada del producto.                    |
+| Existencia     | INT(10)       |                              10 | Sí        | Cantidad disponible en inventario.                                  |
+| Categoria      | VARCHAR       |                              50 | Sí        | Categoría del producto. En los registros actuales puede venir nula. |
+| Estado         | VARCHAR       |                              20 | Sí        | Estado actual del producto, por defecto “Activo”.                   |
+
+
+
+Tabla usuario:
+| Columna    | Tipo de dato |              Límite de caracteres | ¿Es nulo? | Descripción                                            |
+| ---------- | ------------ | --------------------------------: | --------- | ------------------------------------------------------ |
+| id         | INT(11)      |                                11 | No        | Identificador único del usuario.                       |
+| nombre     | VARCHAR      |                               100 | No        | Nombre de usuario utilizado para iniciar sesión.       |
+| password   | VARCHAR      |                               255 | No        | Contraseña del usuario almacenada en la base de datos. |
+| created_at | TIMESTAMP    | 19 aprox. en formato fecha y hora | No        | Fecha y hora en que fue creado el usuario.             |
+
+
 Cristian Yahir Campos Aparicio SMSS109222
 
 Lindys Arely Martinez Herrera  SMSS170822
