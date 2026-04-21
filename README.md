@@ -8,4 +8,5 @@ Tu app va a usarse en una empresa de la zona oriental. ¿Qué riesgos de segurid
 Uno de los principales riesgos es la inyección SQL, porque en varias partes del proyecto las consultas se construyen concatenando valores directamente dentro del SQL, por ejemplo en el login, en la edición y en las operaciones de productos. Para mitigarlo, usaríamos sentencias preparadas con parámetros (prepared statements y bind_param), ya que OWASP las recomienda como una defensa principal contra este tipo de ataque. El manejo de contraseñas en texto plano tambien es un riesgo importasnte. En el volcado SQL, la tabla usuario guarda la contraseña en un campo password, y en login.php la comparación se hace de forma directa, sin hash. Eso es peligroso porque, si la base de datos se expone, las contraseñas quedarían comprometidas. La mejora correcta sería almacenar contraseñas con password_hash() y validarlas con password_verify().
 
 Cristian Yahir Campos Aparicio SMSS109222
+
 Lindys Arely Martinez Herrera  SMSS170822
